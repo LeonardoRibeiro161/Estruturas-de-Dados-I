@@ -1,1 +1,4 @@
-# estudo_estruturas
+#Codigos de estudos Estruturas de Dados
+-Listas Encadeadas 
+-Pilhas
+-Filas
