@@ -29,7 +29,7 @@ Lista* cria_lista(void)
 Lista *insereInicio(Lista* lst)
 {
 	Lista *novo;
-	char nome[30]; sexo;
+	char nome[30],sexo;
 	int idade;
 	
 	novo = (Lista* )malloc(sizeof(Lista));
@@ -56,7 +56,7 @@ void Imprimir(Lista *lst)
 	Lista* pecorre;
 	for(pecorre = lst; pecorre != NULL; pecorre = pecorre->prox)
 	{
-		cout<<"Nome :"<<pecorre.p.nome <<" Idade: "<<pecorre.p.idade <<" Sexo: "<<pecorre.p.sexo<<endl;
+		cout<<"Nome :"<<pecorre->p.nome <<" Idade: "<<pecorre->p.idade <<" Sexo: "<<pecorre->p.sexo<<endl;
 	}
 }
 
@@ -87,15 +87,22 @@ int main()
 				cout<<"-----------------------------------"<<endl;
 				cout<<"[+] - Pessoas cadastradas"<<endl;
 				cout<<"-----------------------------------"<<endl;
-				
+				Imprimir(lst);
+				break;
+			case 2:
+			limpa_tela();
+			cout<<"-----------------------------------"<<endl;
+			cout<<"[+] - Cadastro no inicio"<<endl;
+			cout<<"-----------------------------------"<<endl;
+			lst = insereInicio(lst);	
 		}
 	}
-	while(resp;)
+	while(resp);
 }
-/*Altere o programa acima inserindo as seguintes funções:
+/*Altere o programa acima inserindo as seguintes funÃ§Ãµes:
 - Inserir uma pessoa no final da lista;
-- Remover a última pessoa da lista;
-- Remover determinada pessoa da lista, cujo nome seja informado pelo usuário;
+- Remover a Ãºltima pessoa da lista;
+- Remover determinada pessoa da lista, cujo nome seja informado pelo usuÃ¡rio;
 - Percorrer a lista de traz para frente.
 - Ordenar a lista
 */
