@@ -1,7 +1,8 @@
 #include<iostream>
 #include<stdio.h>
 #include<stdlib.h>
-
+#include<windows.h>
+#include<string.h>
 using namespace std;
 
 
@@ -77,14 +78,76 @@ Lista *insereFim(Lista* lst)
 	return lst;
 }
 
+Lista *removeNome(Lista* lst)
+{
+	Lista *ant = NULL;
+	Lista *p = lst;
+	
+	char nome[30];
+	cout<<"Informe o nome: ";
+	cin>>nome;
+	while(p != NULL && strcmp(p->p.nome, nome) == 1)
+	{
+		ant = p;
+		p = p->prox;
+	}
+	if(p == NULL)
+	{
+		return lst;
+	}
+	if(ant == NULL)
+	{
+		lst = p->prox;
+	}
+	else
+	{
+		ant->prox = p->prox;
+	}
+
+	return lst;
+}
+
 void Imprimir(Lista *lst)
 {
 	Lista* pecorre;
-	for(pecorre = lst; pecorre != NULL; pecorre = pecorre->prox)
+	
+	if(lst == NULL)
 	{
-		cout<<"Nome :"<<pecorre->p.nome <<" Idade: "<<pecorre->p.idade <<" Sexo: "<<pecorre->p.sexo<<endl;
+		cout<<"Lista vazia"<<endl;
+	}
+	else
+	{
+		for(pecorre = lst; pecorre != NULL; pecorre = pecorre->prox)
+		{
+			cout<<"Nome:"<<pecorre->p.nome <<" Idade: "<<pecorre->p.idade <<" Sexo: "<<pecorre->p.sexo<<endl;
+		}
+	}
+	
+	cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"<<endl;
+}
+
+void ImprimirTraz(Lista *lst)
+{
+	Lista *pecorre;
+	Lista *p_inverso;
+	if(lst == NULL)
+	{
+		cout<<"Lista vazia"<<endl;
+	}
+	else
+	{
+		while(pecorre->prox != NULL)
+		{
+			pecorre = pecorre->prox;
+		}
+		p_inverso = pecorre;
+		for(; p_inverso != NULL; p_inverso->ant)
+		{
+			cout<<"Nome:"<< p_inverso->p.nome <<" Idade: "<< p_inverso->p.idade <<" Sexo: "<< p_inverso->p.sexo<<endl;
+		}
 	}
 }
+
 
 void limpa_tela()
 {
@@ -95,15 +158,15 @@ int main()
 	Lista *lst;
 	lst = cria_lista();
 	int resp;
+
 	do
 	{
 		cout<<"[1] - Exibir lista"<<endl;
 		cout<<"[2] - Adicionar no inicio"<<endl;
 		cout<<"[3] - Adicionar no fim"<<endl;	
-		cout<<"[4] - Remover fim da lista"<<endl;
-		cout<<"[5] - Remover pelo nome"<<endl;
-		cout<<"[6] - Percorre a lista de tras para frente"<<endl;
-		cout<<"[7] - Ordernar lista"<<endl;
+		cout<<"[4] - Remover pelo nome"<<endl;
+		cout<<"[5] - Percorre a lista de tras para frente"<<endl;
+		cout<<"[6] - Ordernar lista"<<endl;
 		cout<<"Opcao: "<<endl;
 		cin>>resp;
 		switch(resp)
@@ -114,6 +177,7 @@ int main()
 				cout<<"[+] - Pessoas cadastradas"<<endl;
 				cout<<"-----------------------------------"<<endl;
 				Imprimir(lst);
+				system("pause");
 				break;
 			case 2:
 				limpa_tela();
@@ -128,15 +192,35 @@ int main()
 				cout<<"[+] - Cadastro no Fim"<<endl;
 				cout<<"-----------------------------------"<<endl;
 				lst = insereFim(lst);
+				break;	
+			case 4:
+				limpa_tela();
+				cout<<"-----------------------------------"<<endl;
+				cout<<"[-] - Removendo pelo nome"<<endl;
+				cout<<"-----------------------------------"<<endl;
+				lst =removeNome(lst);
 				break;
+			case 5:
+				limpa_tela();
+				cout<<"-----------------------------------"<<endl;
+				cout<<"[-] - Imprimindo ordem inversa "<<endl;
+				cout<<"-----------------------------------"<<endl;
+				ImprimirTraz(lst);
+				system("pause");
+				break;
+			default:
+				cout<<"Opcao incorreta \n";
 		}
+		
+		Sleep(1000);
+		limpa_tela();
 	}
 	while(resp);
 }
-/*Altere o programa acima inserindo as seguintes funções:
-- Inserir uma pessoa no final da lista;
-- Remover a última pessoa da lista;
-- Remover determinada pessoa da lista, cujo nome seja informado pelo usuário;
+/*Altere o programa acima inserindo as seguintes funÃ§Ãµes:
+- Inserir uma pessoa no final da lista; ok
+- Remover a Ãºltima pessoa da lista; ok
+- Remover determinada pessoa da lista, cujo nome seja informado pelo usuÃ¡rio;
 - Percorrer a lista de traz para frente.
 - Ordenar a lista
 */
