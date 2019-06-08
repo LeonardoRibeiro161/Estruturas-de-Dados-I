@@ -1,17 +1,22 @@
 /*Altere o programa acima inserindo as seguintes funções:
-- Nome, Idade , Sexo
+Atividade de Estruturas de Dados 
+Resolução do Exercicio envolvendo Lista Duplamente encadeada
+Desenvolvido por Leonardo Ribeiro 
 - Inserir uma pessoa no final da lista;
 - Remover a última pessoa da lista;
 - Remover determinada pessoa da lista, cujo nome seja informado pelo usuário;
 - Percorrer a lista de traz para frente.
 - Ordenar a lista
 */
+
 #include<iostream>
 #include<stdlib.h>
 #include<stdio.h>
 #include<Windows.h>
 #include<string.h>
+
 using namespace std;
+
 typedef struct pessoas
 {
 	char nome[30];
