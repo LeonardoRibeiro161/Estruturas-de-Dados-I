@@ -56,7 +56,7 @@ int busca_binaria(int tamanho, int *v , int busca)
 		{
 			return meio;
 		}
-	}return cout<<"O numero nao esta no vetor";
+	}return -1
 	
 }
 
